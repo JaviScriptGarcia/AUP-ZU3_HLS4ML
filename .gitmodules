@@ -1,0 +1,3 @@
+[submodule "upstream/ICTP-AUP-ZU3-HLS4ML"]
+	path = upstream/ICTP-AUP-ZU3-HLS4ML
+	url = https://github.com/ICTP/AUP-ZU3-HLS4ML.git

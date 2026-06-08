@@ -1,0 +1,52 @@
+# Vivado / Vitis HLS outputs
+build/
+*.jou
+*.log
+*.backup.log
+*.backup.jou
+.Xil/
+*.xpr
+*.cache/
+*.runs/
+*.ip_user_files/
+*.gen/
+*.hw/
+*.sim/
+*.srcs/
+xsim.dir/
+*.wdb
+*.wcfg
+webtalk*.log
+*.str
+
+# hls4ml generated projects (huge, regenerable)
+**/hls4ml_prj/
+**/myproject_prj/
+**/output/myproject_*_prj/
+
+# Datasets that exceed git size (download from upstream)
+*.csv
+**/00.datasets/*.csv
+**/05.pynq/*.csv
+
+# Trained model weights (regenerable; large)
+*.h5
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*~
+
+# Bitstreams and xsa (sometimes needed, sometimes regenerable)
+# Comment out next two lines if you want to commit specific xsa/bit
+# *.xsa
+# *.bit
