@@ -1,52 +1,72 @@
-# Vivado / Vitis HLS outputs
-build/
+# =============================================================
+# Reproducibility policy: track only what a person with the same
+# AUP-ZU3 board needs to reproduce the experiment. Everything that
+# a tool regenerates deterministically (HLS projects, Vivado runs,
+# large datasets) is ignored.
+# =============================================================
+
+# --- Vivado / Vitis logs and journals --------------------------------
 *.jou
 *.log
 *.backup.log
 *.backup.jou
-.Xil/
-*.xpr
-*.cache/
-*.runs/
-*.ip_user_files/
-*.gen/
-*.hw/
-*.sim/
-*.srcs/
-xsim.dir/
+*.str
+webtalk*.log
 *.wdb
 *.wcfg
-webtalk*.log
-*.str
 
-# hls4ml generated projects (huge, regenerable)
+# --- Vivado generated project trees (regenerable from the TCL) -------
+# NOTE: do NOT use a blanket "*.hw/" rule — it would wrongly ignore the
+# 04.hw/ source directory that holds cifar10_bd.tcl, build_bitstream.tcl
+# and the exported XSA. Instead ignore only the generated project dirs.
+**/vivado_prj/
+**/*.cache/
+**/*.runs/
+**/*.gen/
+**/*.srcs/
+**/*.sim/
+**/*.ip_user_files/
+**/.Xil/
+xsim.dir/
+build/
+
+# --- Vitis HLS generated projects (huge, regenerable from build_*.tcl)
 **/hls4ml_prj/
 **/myproject_prj/
+**/myproject_accel_prj/
 **/output/myproject_*_prj/
+# Packaged HLS IP zip: regenerable in ~5 min from build_accel.tcl, and
+# the exported XSA already embeds the final bitstream, so it is not
+# needed to reproduce inference.
+**/03.hls/ip.zip
 
-# Datasets that exceed git size (download from upstream)
+# --- Datasets that exceed git size (regenerate on host, see notebooks)
 *.csv
-**/00.datasets/*.csv
-**/05.pynq/*.csv
 
-# Trained model weights (regenerable; large)
+# --- Trained model weights (regenerable by re-running the training nb)
+# The distilled student is only 168 KB; if you want it tracked for
+# turnkey hls4ml reproduction, force-add it: git add -f <path>.h5
 *.h5
 
-# Python / Jupyter
+# --- Python / Jupyter ------------------------------------------------
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .venv/
 venv/
 
-# Editor / OS
+# --- Editor / OS -----------------------------------------------------
 .vscode/
 .idea/
 .DS_Store
 *.swp
 *~
 
-# Bitstreams and xsa (sometimes needed, sometimes regenerable)
-# Comment out next two lines if you want to commit specific xsa/bit
-# *.xsa
-# *.bit
+# =============================================================
+# Explicitly TRACKED (whitelist overrides above where needed):
+#   - all *.tcl, *.cpp, *.h, *.ipynb, *.py source files
+#   - 04.hw/bd_wrapper_*.xsa  (the final bitstream; ~4 MB, lets anyone
+#     flash the design without re-synthesising — add with -f if an
+#     ignore rule ever shadows it)
+# Bitstreams/XSA are intentionally NOT ignored.
+# =============================================================
