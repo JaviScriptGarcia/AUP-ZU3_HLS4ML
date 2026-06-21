@@ -65,10 +65,10 @@ CNN for MNIST, GRU for recommendation) are followed as the starting point.
 
 | Tag | Contents | Status |
 |---|---|---|
-| `v0.1-mnist-reproduction` | ICTP MNIST CNN running on our board, end-to-end | pending |
-| `v0.2-own-cnn` | Own CNN trained, synthesised and running | pending |
-| `v0.3-vision-model` | Larger vision CNN (target: MobileNet-style) | pending |
-| `v1.0-tfm` | Thesis + benchmarks + FINN vs hls4ml comparison | pending |
+| `v0.1-mnist-reproduction` | ICTP MNIST CNN running on our board, end-to-end (90.54 % hw accuracy) | **done** |
+| `v0.2-own-cnn-deployed` | Own CIFAR-10 CNN trained, synthesised and running on the FPGA (60.90 % hw accuracy, matches the 60.97 % bit-accurate sim) | **done** |
+| `v0.3-vision-model` | Larger vision CNN (target: MobileNet-style) | planned |
+| `v1.0-tfm` | Thesis + benchmarks + FINN vs hls4ml comparison | planned |
 
 ## Physical location
 
