@@ -53,7 +53,6 @@ CNN for MNIST, GRU for recommendation) are followed as the starting point.
 ```
 .
 ├── upstream/ICTP-AUP-ZU3-HLS4ML/   git submodule of ICTP reference repo
-├── docs/                            per-phase notes and decisions
 ├── reproduction/                    v0.1: reproduce ICTP MNIST CNN as-is
 ├── adaptation/                      v0.2+: own model adapted to the same flow
 ├── notebooks/                       Jupyter notebooks deployed to the board
