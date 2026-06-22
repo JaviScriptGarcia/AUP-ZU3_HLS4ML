@@ -85,10 +85,9 @@ architecture, or rebuild the bitstream. It uses the full toolchain.
 > ⚠️ **Hard requirement: ~32 GB of RAM to synthesise.**
 > The Vivado synthesis of the complete block design (ZynqMP PS + AXI
 > DMA + interconnects + the hls4ml IP) peaks at ~25.6 GB of resident
-> memory. On a 15 GB host it swap-thrashes and the OS freezes — this
-> cost us several wasted runs before upgrading to 32 GB. If you cannot
-> provide ~32 GB, **use Path A instead**; the committed XSA already
-> contains a working bitstream.
+> memory. On a 15 GB host it swap-thrashes and the OS freezes. If you
+> cannot provide ~32 GB, **use Path A instead**; the committed XSA
+> already contains a working bitstream.
 
 Tooling used (other versions may behave differently):
 - Vivado / Vitis HLS **2024.1**

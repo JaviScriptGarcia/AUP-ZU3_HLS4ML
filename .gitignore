@@ -62,10 +62,7 @@ venv/
 *.swp
 *~
 
-# --- TFM working notes: NOT part of the reproducible artefact --------
-# Lab notebooks, supervisor reports, context dumps and journey notes
-# are personal thesis material (and may contain personal information).
-# They are intentionally kept local only and never published here.
+# --- Local-only working notes (not part of the reproducible artefact)
 docs/
 
 # =============================================================
