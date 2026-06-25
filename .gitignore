@@ -42,6 +42,9 @@ build/
 
 # --- Datasets that exceed git size (regenerate on host, see notebooks)
 *.csv
+*.npz
+# Per-image reference predictions (regenerable from the model + test set)
+*.npy
 
 # --- Trained model weights (regenerable by re-running the training nb)
 # The distilled student is only 168 KB; if you want it tracked for
