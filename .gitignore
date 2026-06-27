@@ -20,6 +20,7 @@ webtalk*.log
 # 04.hw/ source directory that holds cifar10_bd.tcl, build_bitstream.tcl
 # and the exported XSA. Instead ignore only the generated project dirs.
 **/vivado_prj/
+**/vivado_prj_*/
 **/*.cache/
 **/*.runs/
 **/*.gen/
@@ -34,6 +35,7 @@ build/
 **/hls4ml_prj/
 **/myproject_prj/
 **/myproject_accel_prj/
+**/myproject_accel*_prj/
 **/output/myproject_*_prj/
 # Packaged HLS IP zip: regenerable in ~5 min from build_accel.tcl, and
 # the exported XSA already embeds the final bitstream, so it is not
@@ -67,6 +69,12 @@ venv/
 
 # --- Local-only working notes (not part of the reproducible artefact)
 docs/
+
+# --- Monitor/diagnostic scratch markers (not part of the artefact) ---
+**/.synth_seen
+**/.bit_seen
+**/*_util_hierarchical.rpt
+**/ip64.zip
 
 # =============================================================
 # Explicitly TRACKED (whitelist overrides above where needed):

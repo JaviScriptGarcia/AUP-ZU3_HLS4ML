@@ -1,0 +1,56 @@
+[
+  {
+    "val_acc": 0.9319677948951721,
+    "hp": {
+      "lr": 0.003,
+      "alpha": 0.5,
+      "temperature": 4,
+      "label_smoothing": 0.05
+    }
+  },
+  {
+    "val_acc": 0.9034382104873657,
+    "hp": {
+      "lr": 0.001,
+      "alpha": 0.5,
+      "temperature": 3,
+      "label_smoothing": 0.1
+    }
+  },
+  {
+    "val_acc": 0.8983174562454224,
+    "hp": {
+      "lr": 0.001,
+      "alpha": 0.3,
+      "temperature": 3,
+      "label_smoothing": 0.05
+    }
+  },
+  {
+    "val_acc": 0.8507680892944336,
+    "hp": {
+      "lr": 0.0005,
+      "alpha": 0.5,
+      "temperature": 3,
+      "label_smoothing": 0.0
+    }
+  },
+  {
+    "val_acc": 0.8397951722145081,
+    "hp": {
+      "lr": 0.0005,
+      "alpha": 0.2,
+      "temperature": 6,
+      "label_smoothing": 0.05
+    }
+  },
+  {
+    "val_acc": 0.813460111618042,
+    "hp": {
+      "lr": 0.0005,
+      "alpha": 0.2,
+      "temperature": 4,
+      "label_smoothing": 0.1
+    }
+  }
+]

@@ -51,10 +51,34 @@ recommendation) are the starting point.
 
 ## Experiments
 
-| Experiment | Result |
-|---|---|
-| MNIST CNN reproduced end-to-end on the AUP-ZU3 | 90.54 % hardware accuracy |
-| Own CIFAR-10 CNN trained, synthesised and run on the FPGA | 60.90 % hardware accuracy (matches the 60.97 % bit-accurate simulation) |
+Each row is an end-to-end result: trained model → hls4ml → Vivado bitstream →
+PYNQ overlay → inference measured **on the board**. Latency and throughput are
+the hardware-only figures from the deployed inference notebooks.
 
-See `adaptation/cifar10-lenet/README.md` for the full CIFAR-10 reproduction
-steps (board-only inference path and full-rebuild path).
+| # | Experiment | HW accuracy | HW latency / image | Throughput |
+|---|---|---|---|---|
+| v0.1 | MNIST CNN reproduced end-to-end (ICTP reference) | 90.54 % | — | — |
+| v0.2 | Own CIFAR-10 CNN trained, synthesised and run | 60.90 % (60.97 % bit-accurate) | — | — |
+| v0.3 | BloodMNIST white-blood-cell CNN, 48×48 | 83.19 % | — | — |
+| v0.4 | BloodMNIST CNN widened to 64×64 (24→32→64 ch) | 88.98 % | 721 µs | 1387 img/s |
+| **v0.5** | **BloodMNIST 64×64, wider net (32→48→96 ch) + KD + hyperparameter search** | **93.19 %** | **739 µs** | **1353 img/s** |
+
+**v0.5 is the current deployed design.** The quantised `ap_fixed<24,12>`
+network reproduces the software accuracy in hardware to within 0.06 pp
+(93.25 % software → 93.19 % on the board, 99.42 % per-image agreement). It uses
+roughly half the device on the XCZU3EG (Vivado: LUT 50.5 %, DSP 43.6 %,
+BRAM 57.4 %), with timing met (WNS +0.613 ns at 100 MHz).
+
+### Notes on the design space
+
+- **Resolution matters, not just upscaling.** BloodMNIST 64×64 has real
+  microscopy detail; PathMNIST/DermaMNIST 64×64 were found to be interpolated
+  from 28×28 (no high-frequency gain), so they were not used.
+- **Reuse-factor co-design.** Lowering the conv reuse factors cuts latency
+  (a v0.5b variant reached 634 µs in HLS, ~2.6× faster) but pushes the conv
+  multiplies from DSP into LUTs; on this device that overflowed the LUT budget
+  (Vivado placement: 104 % LUT), so the higher-reuse v0.5 remains the deployed
+  design. This is a concrete LUT-vs-latency limit of the XCZU3EG for this net.
+
+See `adaptation/cifar10-lenet/README.md` for the CIFAR-10 reproduction and
+`adaptation/wbc-mobilenet/` for the BloodMNIST experiments.
